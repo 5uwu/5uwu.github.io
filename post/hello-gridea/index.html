@@ -6,7 +6,7 @@
 
 <title>Hello Gridea | Gridea</title>
 
-<link rel="shortcut icon" href="https://5uwu.github.io/favicon.ico?v=1619518909929">
+<link rel="shortcut icon" href="https://5uwu.github.io/favicon.ico?v=1619614108531">
 
 <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://5uwu.github.io/styles/main.css">
@@ -17,9 +17,11 @@
 <script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/dart.min.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/darkreader@4.9.32/darkreader.min.js"></script>
+
 <!-- DEMO JS -->
 <!--<script src="media/scripts/index.js"></script>-->
 
@@ -77,10 +79,13 @@
             
         </div>
         <div style="text-align: center">
-            <form id="gridea-search-form" style="position: relative" data-update="1619518909929" action="/search/index.html">
+            <form id="gridea-search-form" style="position: relative" data-update="1619614108531" action="/search/index.html">
                 <input class="search-input" autocomplete="off" spellcheck="false" name="q" placeholder="搜索文章" />
                 <i class="fas fa-search gt-c-content-color-first" style="position: absolute; top: 9px; left: 10px;"></i>
             </form>
+        </div>
+        <div style="text-align: center">
+            <button onclick="changeDarkMode();" style="outline: none;border: none;padding: 1.5rem 3rem;background-color: transparent;"><i class="fas fa-adjust fa-lg gt-c-content-color-first"></i></button>
         </div>
     </div>
 </nav>
@@ -101,13 +106,14 @@
                         </a>
                     
                 </div>
-                <div class="post-content">
+                <div class="post-content" id="MainText">
                     <p>👏  欢迎使用 <strong>Gridea</strong> ！<br>
 ✍️  <strong>Gridea</strong> 一个静态博客写作客户端。你可以用它来记录你的生活、心情、知识、笔记、创意... ...</p>
 <!-- more -->
 <p><a href="https://github.com/getgridea/gridea">Github</a><br>
 <a href="https://gridea.dev/">Gridea 主页</a><br>
-<a href="http://fehey.com/">示例网站</a></p>
+<a href="http://fehey.com/">示例网站</a><br>
+[TOC]</p>
 <h2 id="特性">特性👇</h2>
 <p>📝  你可以使用最酷的 <strong>Markdown</strong> 语法，进行快速创作</p>
 <p>🌉  你可以给文章配上精美的封面图和在文章任意位置插入图片</p>
@@ -130,11 +136,6 @@
 
         
 
-        
-            <span id="/post/hello-gridea/" class="leancloud_visitors" data-flag-title="Hello Gridea">
-                <em class="post-meta-item-text">阅读量 </em>
-                <i class="leancloud-visitors-count">0</i>
-            </span>
         
 
         
@@ -160,44 +161,153 @@
 		appKey: '',
 		avatar: '',
 		pageSize: 5,
-		recordIp: true,
+		recordIp: false,
 		placeholder: 'Just Go Go',
-		visitor: true,
+		visitor: false,
 	});
 </script>
 
         
 
         <div class="site-footer gt-c-content-color-first">
-    <div class="slogan gt-c-content-color-first">温故而知新</div>
+    <div class="slogan gt-c-content-color-first">
+        温故而知新
+    </div>
     <div class="social-container">
         
             
-        
+                    
             
-        
+                    
             
-        
+                    
             
-        
+                    
             
-        
+                    
             
-        
+                    
     </div>
     <div class="footer-info">
-        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+        
     </div>
     <div>
         Theme by <a href="https://imhanjie.com/" target="_blank">imhanjie</a>, Powered by <a
-                href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a href="https://5uwu.github.io/atom.xml" target="_blank">RSS</a></a>
+            href="https://github.com/getgridea/gridea" target="_blank">Gridea | <a
+                href="https://5uwu.github.io/atom.xml" target="_blank">RSS</a></a>
     </div>
 </div>
+<div class="fab">
+    <a aria-label="回到顶部" class="fab-btn" href="#" title="回到顶部">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" role="img" viewBox="0 0 320 512"
+            height="25" width="25">
+            <path fill="currentColor"
+                d="M168.5 164.2l148 146.8c4.7 4.7 4.7 12.3 0 17l-19.8 19.8c-4.7 4.7-12.3 4.7-17 0L160 229.3 40.3 347.8c-4.7 4.7-12.3 4.7-17 0L3.5 328c-4.7-4.7-4.7-12.3 0-17l148-146.8c4.7-4.7 12.3-4.7 17 0z">
+            </path>
+        </svg>
+    </a>
+</div>
+
 
 <script>
-  hljs.initHighlightingOnLoad()
-</script>
+    hljs.initHighlightingOnLoad();
+    if(localStorage.getItem("dark-mode") == "dark"){
+        DarkReader.enable({
+            brightness: 100,
+            contrast: 90,
+            sepia: 10
+        });
+    }else{
+        DarkReader.disable();
+    }
+    $(document).ready(function () {
+        //生成博文内部目录，在class="ArticleCategory"的div内
+        $(".post-category").each(function () {
+            $("#post-category").append("");
+            $("#MainText").children().each(function (index, element) {
 
+                var tagName = $(this).get(0).tagName;
+
+                if (tagName.substr(0, 1) == "H") {
+                    var contentH = $(this).html();
+                    var level = tagName.substr(1, 1);
+                    var liClass = ""
+                    //缩进的长度
+                    if (level == 1) {
+                        liClass = "class='headline1'"
+                    } else if (level == 2) {
+                        liClass = "class='headline2'"
+                    }
+                    if (level <= 2) {//添加id
+                        var hID = "Title-" + tagName + "-" + index.toString();
+                        $(this).attr("id", hID);
+                        hID = "#" + hID;
+                        //在目标DIV中添加 li
+                        $("#post-category").append("<li " + liClass + "><a class='toca' href='" + hID + "'>" + contentH + "</a></li>");
+                    }
+
+                }
+            });
+        });
+
+        //页面内平滑跳转
+        $("a[href='#']").click(function () {
+            $('html,body').animate({ scrollTop: 0 }, 500);
+            return false;
+        });
+
+        $("a.toca").click(function () {
+            var var_href = $(this).attr("href");
+            var len_href = var_href.length;
+            var has_mao = var_href.search("#");
+            if (has_mao == -1) return;
+            var index_mao = var_href.lastIndexOf("#");
+            var sub_href = var_href.substr(index_mao, len_href - index_mao);
+            $('html,body').animate({ scrollTop: $(sub_href).offset().top - 20 }, 500);
+            return false;
+        });
+        
+        $("a#toc-btn").click(function(){
+            $("#post-toc").addClass("active");
+        })
+        $("a#post-toc-close").click(function(){
+            $("#post-toc").removeClass("active");
+        })
+        
+    });
+    function changeDarkMode() {
+        if (DarkReader.isEnabled()) {
+            DarkReader.disable();
+            DarkReader.auto(false);
+            localStorage.setItem("dark-mode", "light");
+        } else {
+            DarkReader.enable();
+            localStorage.setItem("dark-mode", "dark");
+        }
+
+    }
+</script>
+    </div>
+    <div class="fab fab-content">
+        <a aria-label="文章目录" class="fab-btn-content" id="toc-btn" href="javascript:;" title="文章目录">
+            <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" data-icon="list-ul" class="svg-inline--fa fa-list-ul fa-w-16" role="img" viewBox="0 0 512 512" height="25" width="25">
+                <path fill="currentColor" d="M48 48a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm0 160a48 48 0 1 0 48 48 48 48 0 0 0-48-48zm448 16H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16zm0-320H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16V80a16 16 0 0 0-16-16zm0 160H176a16 16 0 0 0-16 16v32a16 16 0 0 0 16 16h320a16 16 0 0 0 16-16v-32a16 16 0 0 0-16-16z">
+                </path>
+            </svg> 
+        </a>
+    </div>
+    <div class="post-toc" id="post-toc">
+        <div class="toc-label">
+            <div>文章目录</div>
+            <a href="javascript:;" id="post-toc-close">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" height="16" width="16">
+                    <path d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" fill="currentColor">
+                    </path>
+                </svg>
+            </a>
+        </div>
+        <ul id="post-category" class="post-category">
+        </ul>
     </div>
 </div>
 </body>
